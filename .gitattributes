@@ -1,0 +1,11 @@
+* text=auto eol=lf
+*.rs text diff=rust eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.md text eol=lf
+
+fixtures/** linguist-vendored
+packs/** linguist-vendored
+evals/** linguist-vendored
+*.ps1 linguist-vendored

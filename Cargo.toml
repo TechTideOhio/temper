@@ -1,0 +1,97 @@
+[package]
+name = "temper-eval"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+description = "TideOS Eval Kit (Tool 7): pass@k vs pass^k multi-trial reliability evaluation engine at real sampling temperatures."
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/TechTideOhio/temper"
+homepage = "https://techtideai.io"
+documentation = "https://github.com/TechTideOhio/temper#readme"
+keywords = ["evals", "reliability", "pass-at-k", "pass-hat-k", "ai-agents"]
+categories = ["command-line-utilities", "development-tools::testing"]
+
+[[bin]]
+name = "temper"
+path = "src/main.rs"
+
+[lib]
+name = "temper"
+path = "src/lib.rs"
+
+[lints.rust]
+unsafe_code = "forbid"
+unused_must_use = "deny"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+dbg_macro = "deny"
+todo = "deny"
+unwrap_used = "deny"
+module_name_repetitions = "allow"
+must_use_candidate = "allow"
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+struct_excessive_bools = "allow"
+similar_names = "allow"
+result_large_err = "allow"
+too_many_lines = "allow"
+uninlined_format_args = "allow"
+cast_precision_loss = "allow"
+cast_possible_truncation = "allow"
+format_push_string = "allow"
+items_after_statements = "allow"
+map_unwrap_or = "allow"
+match_same_arms = "allow"
+unnecessary_wraps = "allow"
+doc_markdown = "allow"
+manual_string_new = "allow"
+manual_let_else = "allow"
+case_sensitive_file_extension_comparisons = "allow"
+redundant_closure = "allow"
+redundant_closure_for_method_calls = "allow"
+collapsible_if = "allow"
+unnecessary_map_or = "allow"
+bool_to_int_with_if = "allow"
+manual_div_ceil = "allow"
+cast_lossless = "allow"
+assigning_clones = "allow"
+double_ended_iterator_last = "allow"
+trim_split_whitespace = "allow"
+unused_self = "allow"
+derivable_impls = "allow"
+needless_bool = "allow"
+question_mark = "allow"
+if_not_else = "allow"
+needless_borrows_for_generic_args = "allow"
+cast_sign_loss = "allow"
+cast_possible_wrap = "allow"
+vec_init_then_push = "allow"
+io_other_error = "allow"
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4.5", default-features = false, features = ["std", "derive", "help", "usage", "error-context", "suggestions"] }
+regex = "1.11"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+thiserror = "2.0"
+toml = "0.8"
+
+[dev-dependencies]
+rstest = { version = "0.23", default-features = false }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[package.metadata.binstall]
+pkg-url = "{ repo }/releases/download/v{ version }/{ name }-{ target }.{ archive-format }"
+bin-dir = "{ bin }{ binary-ext }"
+pkg-fmt = "tgz"

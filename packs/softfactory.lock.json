@@ -1,0 +1,33 @@
+{
+  "format_version": "sha256-framed-v1",
+  "suite_id": "softfactory-reliability",
+  "suite_version": "1.0.0",
+  "suite_digest": "3e7612e7520e961ed5abcae712ce3d8adb3a411422a078f8e61ddb9fbb07c326",
+  "cases": {
+    "sf-rls-policy-migration": {
+      "case_digest": "47e5e7e9a961bd0a365d666d716fdb961ff1e63972df4d1dfd26a11f720bea17",
+      "trials_digest": "7e1cd6f425d2663a97a46b8bea0feba76ba3df928bafac2aefa5bcb72f7ec6fc",
+      "n_trials": 5,
+      "n_passed": 5,
+      "target_k": 5,
+      "target_pass_hat_k": 1.0
+    },
+    "sf-typescript-strict-refactor": {
+      "case_digest": "51edf9b80c1819383964a65377b8370c15797c56ca3cdba034c516b316fd72c7",
+      "trials_digest": "65b2e559509108430fbc5ac58e206dd9218287c9fbdfecebbefd45e998a46a20",
+      "n_trials": 10,
+      "n_passed": 9,
+      "target_k": 5,
+      "target_pass_hat_k": 0.5
+    },
+    "sf-webhook-idempotency": {
+      "case_digest": "42960a3d5f0f9e9fb17d5988e0ca6a2ca431d4d4816d04bf40b0ca7c1df8d760",
+      "trials_digest": "5ab5a82cbe0de41ef683092a54ea196716f636c24fb25f1f81723163758fe4e9",
+      "n_trials": 5,
+      "n_passed": 4,
+      "target_k": 5,
+      "target_pass_hat_k": 0.0
+    }
+  },
+  "overall_lock_digest": "79b6823fa6780d64786f2d18749aff859fed622041c727db7d56bdb7e811d724"
+}

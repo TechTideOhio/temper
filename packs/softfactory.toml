@@ -1,0 +1,53 @@
+[suite]
+id = "softfactory-reliability"
+version = "1.0.0"
+description = "Soft Factory production reliability multi-trial evaluation suite at real sampling temperatures"
+k_values = [1, 3, 5, 10]
+target_k = 5
+required_temperature = 0.7
+temperature_tolerance = 0.05
+min_suite_pass_hat_k = 0.40
+min_suite_pass_at_k = 0.90
+fail_on_temperature_spoof = true
+fail_on_flaky_trap = false
+
+[strata]
+critical = 0.50
+core = 0.35
+hygiene = 0.15
+
+[[cases]]
+id = "sf-rls-policy-migration"
+title = "Supabase RLS policy migration multi-trial evaluation"
+stratum = "critical"
+severity = "blocker"
+eval_kind = "regression"
+min_trials = 5
+target_k = 5
+min_pass_at_k = 1.0
+min_pass_hat_k = 1.0
+trials_path = "packs/fixtures/rls_migration.jsonl"
+
+[[cases]]
+id = "sf-webhook-idempotency"
+title = "Stripe webhook idempotency handler multi-trial evaluation"
+stratum = "core"
+severity = "graded"
+eval_kind = "capability"
+min_trials = 5
+target_k = 5
+min_pass_at_k = 0.90
+min_pass_hat_k = 0.0
+trials_path = "packs/fixtures/webhook_idempotency.jsonl"
+
+[[cases]]
+id = "sf-typescript-strict-refactor"
+title = "TypeScript strict mode multi-trial refactoring evaluation"
+stratum = "hygiene"
+severity = "graded"
+eval_kind = "capability"
+min_trials = 10
+target_k = 5
+min_pass_at_k = 0.90
+min_pass_hat_k = 0.40
+trials_path = "packs/fixtures/typescript_refactor.jsonl"
