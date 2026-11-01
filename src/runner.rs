@@ -105,7 +105,7 @@ mod tests {
     fn test_runner_executes_simple_echo() {
         let opts = RunTrialOptions {
             case_id: "test-echo",
-            command: "Write-Output 'hello-world'",
+            command: "echo hello-world",
             num_trials: 2,
             temperature: 0.7,
             model: "mock-model",
