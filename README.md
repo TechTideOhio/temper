@@ -57,30 +57,21 @@ xychart-beta
 
 ---
 
-## Author Reviews & Engineering Syntheses
+## Architectural Foundations & Engineering Syntheses (Alex Cinovoj / TechTideAI)
 
-`temper` incorporates the direct architectural feedback and design principles of three leading software and agent engineers:
+`temper` incorporates Alex Cinovoj's three core engineering pillars for production agent reliability:
 
-### 1. Peter Steinberger Pattern: Extreme Craft & Desktop Ergonomics
-> *"Under 1 MB standalone binary with zero C-FFI or runtime bloat. Sub-5ms CLI execution. Instant audio bell (`\x07`) when a cost or reliability cliff trips. Clean ASCII tables with `temper table` that give you the raw physics of sampling without fluff. Approved."*  
-> **Peter Steinberger** (@steipete)
-
+### 1. Extreme Craft & Desktop Ergonomics (Alex Cinovoj)
 - **Sub-1 MB Binary**: Compiled to `0.89 MB` with `opt-level = "z"`, `lto = true`, and `strip = true`.
 - **Snappy Terminal UX**: Zero Python runtime, zero Docker requirement, and sub-5ms evaluation execution.
 - **Audio Notification**: Emits `\x07` terminal alert the instant a production stability gate or temperature spoof trips.
 
-### 2. Harrison Chase Pattern: Production vs Demo Observability
-> *"The distinction between pass@k (can the agent do it once?) and pass^k (will it survive production?) is the single biggest blind spot in agent development today. In LangSmith, we see teams celebrate an 80% run-rate only to watch their multi-step workflows crumble to 33%. Native OpenTelemetry W3C span export allows seamless ingestion into tracing dashboards. Approved."*  
-> **Harrison Chase** (@hwchase17)
-
+### 2. Production vs Demo Observability (Alex Cinovoj)
 - **W3C OpenTelemetry / OpenInference Export**: Generates compliant trace spans with `eval.pass_at_k`, `eval.pass_hat_k`, `eval.temperature`, and `eval.regime` attributes (`temper export --format otel`).
 - **Economic Multi-Trial Modeling**: Maps variance to true cost ($C_{\text{mean}} \times k / \text{pass}\text{\textasciicircum}k$), demonstrating that a drop from 100% to 33% reliability triples the effective cost per reliable output.
 - **Flake Wedge Isolation**: Quantifies the delta $\Delta_k = \text{pass}@k - \text{pass}\text{\textasciicircum}k$ to flag demo traps before shipping.
 
-### 3. TJ Sweet (@orneryd) Pattern: Mathematical Rigor & Provenance Ledgers
-> *"Most benchmarks commit mathematical malpractice with Jensen's inequality by calculating p^k on pooled dataset sums. temper rigorously isolates per-case distributions, logs the exact jensen_pooling_distortion, implements Chen et al. and Yao et al. unbiased combinatorial formulations, and chains trial evidence into sequential Merkle trees so failing trials cannot be cherry-picked away. Approved."*  
-> **TJ Sweet** (@orneryd)
-
+### 3. Mathematical Rigor & Provenance Ledgers (Alex Cinovoj)
 - **Unbiased Combinatorial Estimators**: Exact implementations of Chen et al. (2021) for $\text{pass}@k$ and Yao et al. (2024) for $\text{pass}\text{\textasciicircum}k$ for $n \ge k$ sample sizes.
 - **Jensen's Inequality Defense**: Audits and reports the mathematical distortion between macro-averaged per-case metrics and naive pooled corpus rates.
 - **Merkle Provenance Ledger**: Every trial is cryptographically linked with SHA-256 hash chains ($H(\text{prev\_hash} \parallel \text{trial})$). Removing a failed trial immediately invalidates the chain.
@@ -169,6 +160,7 @@ temper repo .
 | **5** | **`tide-rill`** | `tide-rill` | `1.54 MB` | **Offline Retrieval Quality & Answer Faithfulness** |
 | **6** | **`keel`** | `keel-eval` | `1.91 MB` | **Agent Trajectory Alignment & Step Efficiency (14 vs 3 calls)** |
 | **7** | **`temper`** | `temper-eval` | `0.89 MB` | **Multi-Trial Reliability (pass@k vs pass^k at Real Temperature)** |
+| **8** | **`parley`** | `parley-eval` | `1.77 MB` | **Simulated Users for Multi-Turn State, Memory & Policy Evals** |
 
 ---
 
